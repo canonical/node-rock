@@ -1,0 +1,7 @@
+summary: test node-18 rock simple-modules
+
+execute: |
+  npm i
+  npm run build
+
+  docker run --rm -v "$PWD/dist":/src:ro node:18 exec node /src/index.js

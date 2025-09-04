@@ -1,0 +1,14 @@
+summary: test node-18 rock typescript-app
+
+execute: |
+  npm i
+  npm run check
+  npm run build
+
+  docker run -d --rm --name node-ts-rock -v "$PWD/dist":/src:ro -p 3000:3000 node:18 exec node /src/index.js
+  sleep 3
+
+  curl http://127.0.0.1:3000/ | grep "Hello world!"
+  curl http://127.0.0.1:3000/date | grep "$(date +'%Y-%m-%d')"
+
+  docker stop node-ts-rock

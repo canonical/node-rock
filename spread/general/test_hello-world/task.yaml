@@ -1,0 +1,4 @@
+summary: test node-18 rock hello world
+
+execute: |
+  docker run --rm -v "$PWD/src":/src:ro node:18 exec node /src/main.js | grep "Hello world!"
