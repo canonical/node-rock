@@ -1,0 +1,9 @@
+summary: test node-18 rock typescript-app
+
+execute: |
+  npm i
+  npm run asbuild
+  npm run build
+  install -Dvm644 "$PWD/build/release.wasm" "$PWD/dist"
+
+  docker run --rm -v "$PWD/dist":/src:ro node:22 exec node /src/index.mjs | grep "ok"

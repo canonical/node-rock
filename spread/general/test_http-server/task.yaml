@@ -1,0 +1,9 @@
+summary: test node-18 rock http server
+
+execute: |
+  docker run -d --rm --name node-http-rock -p 8080:8080 -v "$PWD/src":/src:ro node:22 exec node /src/main.js
+  sleep 3
+  
+  curl http://127.0.0.1:8080/ | grep "Hello world!"
+
+  docker stop node-http-rock
