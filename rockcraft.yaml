@@ -1,5 +1,5 @@
 name: node
-version: '18'
+version: '24'
 summary: Node.js 18 rock
 description: |
     Node.js is a free, open-source, cross-platform JavaScript runtime
@@ -13,7 +13,7 @@ platforms:
     amd64:
 
 base: bare
-build-base: ubuntu@24.04
+build-base: devel
 
 parts:
     node:
