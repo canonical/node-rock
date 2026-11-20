@@ -7,42 +7,28 @@ description: |
     tools and scripts.
     This image is a chiselled Node.js rock that only contains the Node.js
     runtime.
+license: MIT
 
 platforms:
     amd64:
 
 base: bare
-build-base: devel
+build-base: ubuntu@26.04
 
 parts:
     node:
         plugin: nil
-        source: https://github.com/alesancor1/chisel-releases.git
-        source-type: git
-        source-branch: fix/missing-node-dep
-        override-build: |
-            chisel cut --release ./ --ignore unstable --root ${CRAFT_PART_INSTALL} \
-                base-files_base \
-                base-files_release-info \
-                base-files_chisel \
-                tzdata_zoneinfo \
-                ca-certificates_data \
-                openssl_config \
-                openssl_data \
-                libgcc-s1_libs \
-                libc6_libs \
-                nodejs_bins
-        # stage-packages:
-        #   - base-files_base
-        #   - base-files_release-info
-        #   - base-files_chisel
-        #   - tzdata_zoneinfo
-        #   - ca-certificates_data
-        #   - openssl_config
-        #   - openssl_data
-        #   - libgcc-s1_libs
-        #   - libc6_libs
-        #   - nodejs_bins
+        stage-packages:
+          - base-files_base
+          - base-files_release-info
+          - base-files_chisel
+          - tzdata_zoneinfo
+          - ca-certificates_data
+          - openssl_config
+          - openssl_data
+          - libgcc-s1_libs
+          - libc6_libs
+          - nodejs_bins
 
     deb-security-manifest:
         plugin: make
